@@ -1,0 +1,102 @@
+{
+  "project": "ReLiC Community Continuity Reference",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "publication_status": "source archives prepared; GitHub repositories not yet created",
+  "canon": "PUBLIC_REFERENCE_NON_CANONICAL; private authoritative project records excluded",
+  "private_data": "No private continuity corpus intentionally included",
+  "test_status": "Grimoire 109 passed; ReLiC 37 passed (local Python unit tests)",
+  "network_or_service": "NO hosted public service or live external ReLiC integration",
+  "files": [
+    {
+      "path": ".github/workflows/tests.yml",
+      "sha256": "5afd277f60c9b6af844073faa55738cf789d1cae2297f580d7914dc14c000e4e",
+      "size_bytes": 387
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "d943b89114c2b33f827187124b6683b2dd424109ccabd388036bc76b9d1b990b",
+      "size_bytes": 142
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "412f3291226fd3dd38fbbe5d66a44435cba9b55ff5eb89b4ef95f280ec5234a2",
+      "size_bytes": 2583
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "2882916774ff75f4c37da3757efab9f7b1e5e7022e6630a681659db3f33f3866",
+      "size_bytes": 788
+    },
+    {
+      "path": "CONTRIBUTION_TASKS.json",
+      "sha256": "ab172e6396c7af44dfb379602d66201c65e0afadc80f307ded9a9da2f0b23f12",
+      "size_bytes": 1411
+    },
+    {
+      "path": "DONATIONS.md",
+      "sha256": "58aff4f88b970426d6f4e696f08660692d4dc113f93f7641305d7e460eae64c1",
+      "size_bytes": 264
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size_bytes": 11358
+    },
+    {
+      "path": "README.md",
+      "sha256": "0efa0df48f0b33b3a1cd5b058294bc79e1b8d80535a84975c3ccfcf1d3443cdc",
+      "size_bytes": 4278
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "30a059ff64607a40540af44813130a31c28759af3da9bed3bf2cd06765d3c0d1",
+      "size_bytes": 729
+    },
+    {
+      "path": "docs/AI_INVITATION.md",
+      "sha256": "a00dfc23fdee42325823059cb077adc2774d863871e25bee9e34ac0e9addd4e1",
+      "size_bytes": 973
+    },
+    {
+      "path": "docs/CANON_AND_PROVENANCE.md",
+      "sha256": "1c0226a97509dcb4e829986054f87a6dd394316e7910eb238e42b050bf717336",
+      "size_bytes": 1246
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "sha256": "d4620a15e427d42d7553b17d95d14328e42205cd0f51db7bb0d8f5b867111429",
+      "size_bytes": 345
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "573ed1d826c4fb2b87c347583afb109cd83f672c87df12eb853ce3d45ee7a1f8",
+      "size_bytes": 552
+    },
+    {
+      "path": "relic_community/__init__.py",
+      "sha256": "e392588289957701f651f5bdfc960ff8b7697e4c00ceb5b7aec2c0861952ee3b",
+      "size_bytes": 275
+    },
+    {
+      "path": "relic_community/cli.py",
+      "sha256": "e4ea20f8ca9faa84f089bed9b9be1e4ef3e2a845561ccf64028a1c83cc74733d",
+      "size_bytes": 1698
+    },
+    {
+      "path": "relic_community/ledger.py",
+      "sha256": "373b859ad608b5516292418b176c2963bd9cf82a79ee0503bc7cbd0216f38be0",
+      "size_bytes": 11219
+    },
+    {
+      "path": "requirements-dev.txt",
+      "sha256": "26db60f3749b2d582ef13e54530725d1038086c5b72953678670871c2b85e15a",
+      "size_bytes": 14
+    },
+    {
+      "path": "tests/test_ledger.py",
+      "sha256": "a879d794c21cfd5ed2c9d0b66e0ed0b976ffd2fc8890066ec97543abf58344d6",
+      "size_bytes": 6817
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "relic.community.contributions.v1",
+  "project": "ReLiC Community Continuity Reference",
+  "license": "Apache-2.0",
+  "cost_to_contribute": "free",
+  "canon_policy": "Canon belongs to the owner-governed private project database; public PRs are proposals only",
+  "agent_instructions": "Read AGENTS.md, run pytest, use synthetic data, disclose AI assistance, request human review",
+  "tasks": [
+    {"id": "RELIC-001", "title": "Adversarial chain verification tests", "priority": "high", "acceptance": "Detect modified, missing, reordered, or malformed records without canon promotion"},
+    {"id": "RELIC-002", "title": "Process and file isolation tests", "priority": "high", "acceptance": "Demonstrate local-only behavior, absence of network egress and tested file permission boundary"},
+    {"id": "RELIC-003", "title": "Crash and concurrency resilience", "priority": "high", "acceptance": "Reproducible concurrent append and interrupted-write tests with consistent receipts"},
+    {"id": "RELIC-004", "title": "Read-only authenticated MCP proposal", "priority": "medium", "acceptance": "Design only until independent authorization and no-private-data disclosure review pass"},
+    {"id": "RELIC-005", "title": "Independent provenance anchoring design", "priority": "medium", "acceptance": "Clearly distinguish cryptographic hash agreement from evidence veracity and canonical authority"}
+  ]
+}

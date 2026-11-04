@@ -1,0 +1,1 @@
+The software is free for everyone. Voluntary donations may support development but do not confer priority, privileges, control of canon or access to private data. No donation destination is configured in this release. Never send payments to an unverified address.
