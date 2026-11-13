@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08111a">
+<meta name="description" content="ReLiC IS browser BIOS and local-first presence enrollment demonstrator.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>𓋹 ReLiC IS — Browser BIOS</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:dark;--bg:#071019;--panel:#111e2a;--soft:#142532;--border:#2d4554;--text:#e8f3f3;--muted:#a6bdc9;--accent:#72e5ce;--gold:#f1cf95;--red:#ffabac}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}
+button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}
+button:focus-visible,input:focus-visible,[role=switch]:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.hidden{display:none!important}
+.bios{min-height:100dvh;background:radial-gradient(ellipse 75% 40% at 80% -10%,#17484f70,transparent),linear-gradient(145deg,#071019,#0b1925);padding:clamp(15px,3vw,36px) clamp(16px,5vw,60px) 112px}
+.wrap{max-width:1160px;margin:0 auto}
+.mast{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px}
+.logo{display:flex;align-items:center;gap:12px;letter-spacing:.14em;font-weight:800;font-size:clamp(19px,3vw,24px)}
+.emblem{width:43px;height:43px;display:grid;place-items:center;border:1px solid var(--accent);border-radius:14px;color:var(--gold);font-size:28px;background:#091e24}
+.status{font-size:12px;color:var(--accent);border:1px solid #277969;border-radius:99px;padding:7px 10px}
+.eyebrow{font-size:12px;color:var(--accent);font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+h1{font-size:clamp(31px,5vw,62px);letter-spacing:-.045em;line-height:1.07;margin:10px 0 12px;font-weight:730;max-width:850px}
+.intro{max-width:780px;color:var(--muted);line-height:1.6;margin:0 0 26px}
+.cards{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:18px}
+.panel{background:#101d29e8;border:1px solid var(--border);border-radius:18px;padding:20px;min-width:0}
+.panel h2{font-size:17px;margin:0 0 6px;letter-spacing:.01em}
+.panel .note{font-size:12px;color:var(--muted);line-height:1.55;margin:0 0 14px}
+.known{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fact{padding:12px;border-radius:12px;border:1px solid #28404d;background:#0b1721;min-width:0}
+.fact dt{font-size:11px;color:var(--muted);margin-bottom:5px}
+.fact dd{margin:0;font:600 13px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+.cap-panel{grid-row:span 2}
+.cap-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.cap{display:flex;align-items:center;justify-content:space-between;text-align:left;gap:8px;padding:11px 10px;background:#0b1721;border:1px solid #29404b;border-radius:12px;min-height:67px;color:var(--text)}
+.cap[aria-checked=true]{border-color:#3bbda4;background:#102b2d}
+.cap-title{font-size:13px;font-weight:650;line-height:1.25}
+.cap-state{display:block;color:var(--muted);font-size:10px;margin-top:5px}
+.pill{display:flex;flex:0 0 41px;height:23px;padding:2px;border-radius:30px;background:#34444d;align-items:center}
+.pill i{height:19px;width:19px;border-radius:50%;background:#d3dfe2;transition:transform .2s}
+[aria-checked=true] .pill{background:#247e74}
+[aria-checked=true] .pill i{transform:translateX(18px);background:#d5fff5}
+.cap:disabled .pill{opacity:.38}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.metric{background:#0b1721;padding:12px;border:1px solid #29404b;border-radius:12px;min-width:0}
+.metric .value{font:650 17px/1.3 ui-monospace,Consolas,monospace;overflow-wrap:anywhere;color:var(--gold)}
+.metric .name{color:var(--muted);font-size:11px;margin-top:6px}
+.actions{position:fixed;z-index:3;bottom:0;left:0;right:0;background:linear-gradient(180deg,#0b1720f2,#09131beF);border-top:1px solid #2d4554;padding:12px max(16px,env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom));backdrop-filter:blur(14px)}
+.actions-inner{display:flex;align-items:center;gap:9px;max-width:1160px;margin:auto;flex-wrap:wrap}
+.btn{border:1px solid #426070;border-radius:11px;background:#162937;padding:11px 15px;color:var(--text);font-size:13px;font-weight:680;min-height:43px}
+.btn.primary{background:var(--accent);color:#08251f;border-color:var(--accent)}
+.btn.warn{color:#ffd1c9}
+.btn.small{padding:8px 10px;min-height:35px}
+.flexfill{flex:1}
+.feedback{min-height:18px;color:var(--muted);font-size:12px;line-height:1.4}
+.smallprint{margin:14px 0 0;color:#a7bdc6;font-size:11px;line-height:1.55}
+.decode{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px;padding:20px;background:radial-gradient(ellipse at 50% 40%,#103f40,#061018 65%);text-align:center}
+.decode h1{font-size:clamp(26px,5vw,47px);margin:0}
+.decode pre{width:min(780px,100%);max-height:48vh;overflow:hidden;padding:22px;border:1px solid #2c7775;background:#08151b;border-radius:16px;color:#87f7de;letter-spacing:.09em;line-height:1.9;font:12px/2 ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left}
+.decode p{max-width:620px;color:var(--muted);font-size:13px;line-height:1.5}
+.presence{position:relative;isolation:isolate;min-height:100dvh;overflow:hidden;background:#071019}
+.art{position:absolute;inset:0;width:100%;height:100%;z-index:-1;object-fit:cover}
+.presence:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#06121928,#07101918 35%,#071019e2 95%)}
+.presence-content{min-height:100dvh;display:flex;justify-content:center;align-items:flex-end;padding:20px 16px calc(25px + env(safe-area-inset-bottom))}
+.chat{width:min(740px,100%);border:1px solid #78d9c36b;background:#071721dc;box-shadow:0 22px 90px #0009;border-radius:20px;backdrop-filter:blur(20px);padding:18px}
+.chat-head{display:flex;align-items:center;gap:9px;font-weight:760;letter-spacing:.06em;font-size:13px;color:var(--gold);margin-bottom:14px}
+.chat-sub{margin-left:auto;font-size:10px;color:var(--accent);letter-spacing:0}
+.messages{max-height:37vh;overflow-y:auto;display:flex;flex-direction:column;gap:9px;margin-bottom:13px}
+.message{font-size:14px;line-height:1.55;padding:10px 13px;border-radius:12px;max-width:91%;overflow-wrap:anywhere}
+.message.system{background:#122836;border:1px solid #365465;align-self:flex-start}
+.message.user{background:#1e4e49;border:1px solid #347c70;align-self:flex-end}
+.composer{display:flex;gap:9px}
+.composer input{flex:1;min-width:0;background:#0a1924;border:1px solid #38596a;color:var(--text);border-radius:12px;padding:13px 12px}
+.composer button{border:0;background:var(--accent);color:#05291f;border-radius:12px;padding:0 17px;font-weight:800}
+.chat-foot{display:flex;gap:8px;align-items:center;margin-top:10px}
+.chat-foot small{color:#b4c7cd;font-size:10px;line-height:1.5}
+.chat-foot button{flex:0 0 auto;background:transparent;color:var(--muted);border:0;font-size:11px;text-decoration:underline;padding:3px}
+@media(max-width:790px){.cards{grid-template-columns:1fr}.cap-panel{grid-row:auto}.known{grid-template-columns:repeat(2,minmax(0,1fr))}.bios{padding-bottom:205px}.actions-inner{gap:7px}.feedback{width:100%;order:2}.flexfill{display:none}}
+@media(max-width:420px){.cap-list{grid-template-columns:1fr 1fr}.cap{min-height:75px;padding:8px}.known{gap:7px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.btn{padding:9px 12px}.chat{padding:13px}.messages{max-height:40vh}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+<script src="./rion_adapter.js" defer></script>
+<script src="./app.js" defer></script>
+</head>
+<body>
+<main id="bios" class="bios">
+ <div class="wrap">
+  <header class="mast"><div class="logo"><span class="emblem" aria-hidden="true">𓋹</span>ReLiC IS</div><span class="status">BROWSER BIOS · LOCAL</span></header>
+  <div class="eyebrow">Entry layer / discovery only</div>
+  <h1>Know the environment.<br>Choose what it may use.</h1>
+  <p class="intro">This screen shows only information exposed by your browser. Switches are preferences for this site, <strong>not</strong> operating-system permissions. No microphone, camera, location, or biometric capture starts automatically.</p>
+  <div class="cards">
+   <section class="panel" aria-labelledby="known-title"><h2 id="known-title">Known on arrival</h2><p class="note">Local browser observations. Unknown is shown as unknown, not inferred.</p><dl class="known" id="known"></dl></section>
+   <section class="panel cap-panel" aria-labelledby="cap-title"><h2 id="cap-title">Available controls</h2><p class="note">Select what ReLiC may request later. Unavailable APIs cannot be enabled here. Permission prompts still require your approval.</p><div class="cap-list" id="capabilities"></div><p class="smallprint">Browser-wide cookies and popup rules cannot be changed by a webpage. Cookie preference means whether this site could use its own cookies; this demo creates none.</p></section>
+   <section class="panel" aria-labelledby="perf-title"><div style="display:flex;align-items:center;gap:10px;justify-content:space-between"><h2 id="perf-title">Connection & stability</h2><button class="btn small" type="button" id="probe">Sample this connection</button></div><p class="note">Browser estimates may be unavailable or inaccurate. The probe sends three HEAD requests only to this page’s own origin when clicked.</p><div class="metrics" id="metrics"></div><p class="smallprint" id="probe-note" aria-live="polite">No active probe run.</p></section>
+  </div>
+ </div>
+ <footer class="actions"><div class="actions-inner">
+   <button id="fullscreen" class="btn" type="button" title="F11 on desktop is a keyboard shortcut; this button requests fullscreen when supported">⛶ Fullscreen / F11</button>
+   <button id="cancel" class="btn" type="button">Cancel</button>
+   <button id="exit" class="btn warn" type="button">Exit</button>
+   <span class="flexfill"></span>
+   <button id="save" class="btn" type="button">Save</button>
+   <button id="continue" class="btn primary" type="button">Save &amp; Continue</button>
+   <span class="feedback" id="feedback" role="status" aria-live="polite"></span>
+ </div></footer>
+</main>
+<main id="decode" class="decode hidden" aria-labelledby="decode-title">
+ <div class="eyebrow">Rion transport / illustrative encoding</div>
+ <h1 id="decode-title">01010010 · RION · 𓋹</h1>
+ <pre id="bits" aria-label="UTF-8 bytes expressed as binary">00000000</pre>
+ <p>Knownness, choice and provenance encoded into bytes by ordinary JavaScript. This is an inspectable binary adapter, not a running RuneCore processor or proof of authentication.</p>
+ <button type="button" class="btn" id="skip">Continue to ReLiC</button>
+</main>
+<main id="presence" class="presence hidden" aria-label="ReLiC presence enrollment demonstrator">
+ <svg class="art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Full-screen original abstract artwork: a luminous central network of stars and curved relationship lines" xmlns="http://www.w3.org/2000/svg">
+  <defs><radialGradient id="sky"><stop stop-color="#20505a"/><stop offset=".55" stop-color="#102937"/><stop offset="1" stop-color="#050d18"/></radialGradient><radialGradient id="halo"><stop stop-color="#a1f1cf" stop-opacity=".55"/><stop offset=".7" stop-color="#37c4b1" stop-opacity=".09"/><stop offset="1" stop-opacity="0"/></radialGradient><filter id="glow"><feGaussianBlur stdDeviation="8"/></filter></defs>
+  <rect width="1440" height="900" fill="url(#sky)"/><ellipse cx="720" cy="400" rx="490" ry="420" fill="url(#halo)"/>
+  <g stroke="#7ee1ce" stroke-opacity=".17" fill="none"><path d="M0 680Q420 105 720 400T1440 90"/><path d="M0 100Q400 790 720 400T1440 750"/><path d="M50 430Q550 750 720 400T1370 300"/><path d="M210 0Q450 450 720 400T1160 0"/><ellipse cx="720" cy="400" rx="410" ry="180" transform="rotate(-20 720 400)"/><ellipse cx="720" cy="400" rx="290" ry="405" transform="rotate(30 720 400)"/></g>
+  <g stroke="#bdcaa9" stroke-opacity=".39" fill="none"><circle cx="720" cy="400" r="168"/><circle cx="720" cy="400" r="275"/><path d="M720 124L1020 400L720 676L420 400Z"/></g>
+  <circle cx="720" cy="400" r="110" fill="#59d9c0" opacity=".13" filter="url(#glow)"/><circle cx="720" cy="400" r="14" fill="#edddb9"/>
+  <g fill="#d2f9e3"><circle cx="170" cy="194" r="3"/><circle cx="312" cy="550" r="4"/><circle cx="490" cy="120" r="3"/><circle cx="634" cy="360" r="3"/><circle cx="852" cy="303" r="4"/><circle cx="1100" cy="200" r="4"/><circle cx="1244" cy="560" r="3"/><circle cx="945" cy="671" r="3"/><circle cx="305" cy="801" r="3"/><circle cx="1120" cy="824" r="3"/><circle cx="710" cy="75" r="3"/><circle cx="1400" cy="250" r="3"/></g>
+  <g font-family="serif" text-anchor="middle"><text x="720" y="448" font-size="59" fill="#f4dbab" opacity=".84">𓋹</text></g>
+ </svg>
+ <div class="presence-content">
+  <section class="chat" aria-label="One ReLiC conversation section">
+   <div class="chat-head"><span aria-hidden="true">𓋹</span> ReLiC <span class="chat-sub" id="auth-state">PRESENCE · UNVERIFIED</span></div>
+   <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions text"></div>
+   <form id="talk" class="composer"><input id="say" type="text" maxlength="80" autocomplete="off" spellcheck="false" aria-label="Message to ReLiC" placeholder="Reply here..." required><button type="submit" aria-label="Send message">Send</button></form>
+   <div class="chat-foot"><small>Local onboarding demonstration. No remote AI, credential enrollment, or identity verification.</small><button type="button" id="return">Back to BIOS</button></div>
+  </section>
+ </div>
+</main>
+</body>
+</html>
