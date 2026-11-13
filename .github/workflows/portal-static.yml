@@ -1,0 +1,23 @@
+name: ReLiC portal static checks
+on:
+  pull_request:
+    paths:
+      - "docs/portal/**"
+      - ".github/workflows/portal-static.yml"
+  push:
+    paths:
+      - "docs/portal/**"
+      - ".github/workflows/portal-static.yml"
+permissions:
+  contents: read
+jobs:
+  portal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check JavaScript syntax
+        run: |
+          node --check docs/portal/app.js
+          node --check docs/portal/rion_adapter.js
+      - name: Check Rion adapter and browser safety contract
+        run: node docs/portal/test_portal.mjs
