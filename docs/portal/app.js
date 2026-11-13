@@ -184,7 +184,7 @@
     for (let i = 0; i < 3; i++) {
       try {
         const start = performance.now();
-        const r = await fetch(location.href.split("#")[0], { method: "HEAD", cache: "no-store", credentials: "omit", mode: "same-origin" });
+        const r = await fetch(location.origin + location.pathname, { method: "HEAD", cache: "no-store", credentials: "omit", mode: "same-origin" });
         if (r.ok) ms.push(Math.round(performance.now() - start));
       } catch (_) { /* Unknown, not stable. */ }
     }
@@ -229,9 +229,13 @@
       selected: supported[id] && choices[id] ? 1 : 0
     }));
     const packet = { protocol: "RION-DEMO-v1", source: "browser-observation", verified: false, lanes };
+    const rions = window.ReLiCRionAdapter;
+    const stateBits = rions ? rions.pack(lanes) : "UNKNOWN — Rion adapter unavailable";
     const byteArray = encoder.encode(JSON.stringify(packet));
-    const bits = Array.from(byteArray.slice(0, 150), (n) => n.toString(2).padStart(8, "0")).join(" ");
-    $("bits").textContent = bits + (byteArray.length > 150 ? "\n… " + byteArray.length + " total UTF-8 bytes" : "");
+    const bits = Array.from(byteArray.slice(0, 88), (n) => n.toString(2).padStart(8, "0")).join(" ");
+    $("bits").textContent = "RION LANES [KNOWN SIGN VALUE]\n" + stateBits +
+      "\n\nUTF-8 TRANSPORT BYTES [PROVENANCE + LANES]\n" + bits +
+      (byteArray.length > 88 ? "\n… " + byteArray.length + " bytes total" : "");
     transitionId = setTimeout(enterPresence, matchMedia("(prefers-reduced-motion: reduce)").matches ? 250 : 2200);
   }
   function enterPresence() {
