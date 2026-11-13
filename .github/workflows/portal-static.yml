@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - "docs/portal/**"
+      - "docs/index.html"
+      - "docs/.nojekyll"
       - ".github/workflows/portal-static.yml"
   push:
     paths:
