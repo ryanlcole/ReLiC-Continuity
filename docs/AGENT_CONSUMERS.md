@@ -31,7 +31,7 @@ python -m relic_community.cli --db ./fixture.sqlite3 verify
 relic-community-mcp --db ./fixture.sqlite3 --project demo
 ```
 
-The final command opens a local stdio MCP server, intended to be launched and owned by a local MCP client. It is not an interactive command; do not send shell text into its protocol stdin. Example desktop client command configuration:
+The three tools return machine-readable structured output with explicitly typed return annotations (`dict[str, Any]`). The MCP v2.3.0 client/server exchange and synthetic integrity-failure refusal were verified by GitHub Actions at commit `769247e` on 2026-11-18; this is not a production deployment, security certification, or proof that external agents or customers are using the service.\n\nThe final command opens a local stdio MCP server, intended to be launched and owned by a local MCP client. It is not an interactive command; do not send shell text into its protocol stdin. Example desktop client command configuration:
 
 ```json
 {
@@ -49,7 +49,7 @@ The client must be trustworthy and the operating system must restrict access to 
 | Unit tests | Test project binding, bounded queries and integrity-failure behavior | PASS on GitHub Actions for Python 3.11, 3.12 and 3.13 at commit `287ec7d` (2026-11-18) |
 | MCP SDK registration | Installed optional SDK registers exactly three tool schemas with synthetic data | PASS on GitHub Actions at commit `287ec7d` (2026-11-18); registration is not an end-to-end client call |
 | Consistent verified snapshot | Verify and query within one SQLite read transaction, including a concurrent-writer test | PASS on GitHub Actions at commit `287ec7d` (2026-11-18), synthetic concurrent-writer tests |
-| Protocol compatibility | A real MCP v2 client discovers and invokes all tools over stdio | New subprocess client tests authored at commit `8303e3b`; CI result pending and not yet verified |
+| Protocol compatibility | A real MCP v2 client discovers and invokes all tools over stdio | PASS on GitHub Actions at commit `769247e` (2026-11-18): real MCP SDK v2.3.0 subprocess handshake, 3 tool calls, project-scoped synthetic results and corrupted-chain refusal |
 | Agent usefulness | A separate agent correctly distinguishes evidence from canon in a synthetic scenario | UNKNOWN |
 | Customer demand | A human operator or team demonstrates willingness to use/support it | UNKNOWN |
 | Commercial route | Owner-approved terms, payment method, pricing, consumer support, required legal/privacy review | NOT STARTED |
