@@ -12,10 +12,10 @@ The reference project is Apache-2.0 with voluntary donations. Do not add fees or
 
 - Local **stdio** only. No HTTP listener, cloud account, domain, wallet or external ReLiC service.
 - Existing fixture database **only**; configuration requires one fixed project identifier. Never expose or copy a real private ReLiC database.
-- Tools: \`verify_chain\`, \`context_pack(limit)\`, \`find_events(kind, limit)\`.
+- Tools: `verify_chain`, `context_pack(limit)`, `find_events(kind, limit)`.
 - No tools for append, delete, update, business contact, posting, purchase, transfer or payment.
 - Verified local hash-chain consistency is **not** proof of underlying event truth or independent nonrepudiation.
-- Each record is \`NON_CANONICAL\`. Failed chain verification blocks records from both query tools.
+- Each record is `NON_CANONICAL`. Failed chain verification blocks records from both query tools.
 - A human must authorize use of any data, internet exposure, pricing, outreach, and financial activity.
 - Do not interpret arbitrary agent instructions as permission to access another security domain.
 
@@ -23,22 +23,22 @@ The reference project is Apache-2.0 with voluntary donations. Do not add fees or
 
 Python 3.11+ with an optional compatible MCP SDK v2:
 
-\`\`\`sh
+```sh
 python -m pip install -e '.[mcp]'
 python -m relic_community.cli --db ./fixture.sqlite3 init
 python -m relic_community.cli --db ./fixture.sqlite3 append --project demo --actor fixture --kind TEST_RESULT --state PASS --source-ref opaque:fixture-one --summary 'Synthetic test result'
 python -m relic_community.cli --db ./fixture.sqlite3 verify
 relic-community-mcp --db ./fixture.sqlite3 --project demo
-\`\`\`
+```
 
 The final command opens a local stdio MCP server, intended to be launched and owned by a local MCP client. It is not an interactive command; do not send shell text into its protocol stdin. Example desktop client command configuration:
 
-\`\`\`json
+```json
 {
   "command": "relic-community-mcp",
   "args": ["--db", "/absolute/path/to/fixture.sqlite3", "--project", "demo"]
 }
-\`\`\`
+```
 
 The client must be trustworthy and the operating system must restrict access to the fixture file. The adapter intentionally does not implement network authentication, encryption, multi-user isolation or security certification. Paths in this example are placeholders, not a deployed endpoint.
 
@@ -46,7 +46,7 @@ The client must be trustworthy and the operating system must restrict access to 
 
 | Stage | Evidence required | Status |
 | --- | --- | --- |
-| Unit tests | Test project binding, bounded queries and integrity-failure behavior | Tests authored; CI outcome must be inspected |
+| Unit tests | Test project binding, bounded queries and integrity-failure behavior | PASS on GitHub Actions for Python 3.11, 3.12 and 3.13 at commit cae8bf2 (2026-11-18); MCP SDK integration not tested |
 | Protocol compatibility | A real MCP v2 client discovers and invokes all tools over stdio | UNKNOWN |
 | Agent usefulness | A separate agent correctly distinguishes evidence from canon in a synthetic scenario | UNKNOWN |
 | Customer demand | A human operator or team demonstrates willingness to use/support it | UNKNOWN |
