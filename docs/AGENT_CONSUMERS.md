@@ -31,7 +31,9 @@ python -m relic_community.cli --db ./fixture.sqlite3 verify
 relic-community-mcp --db ./fixture.sqlite3 --project demo
 ```
 
-The three tools return machine-readable structured output with explicitly typed return annotations (`dict[str, Any]`). The MCP v2.3.0 client/server exchange and synthetic integrity-failure refusal were verified by GitHub Actions at commit `769247e` on 2026-11-18; this is not a production deployment, security certification, or proof that external agents or customers are using the service.\n\nThe final command opens a local stdio MCP server, intended to be launched and owned by a local MCP client. It is not an interactive command; do not send shell text into its protocol stdin. Example desktop client command configuration:
+The three tools return machine-readable structured output with explicitly typed return annotations (`dict[str, Any]`). The MCP v2.3.0 client/server exchange and synthetic integrity-failure refusal were verified by GitHub Actions at commit `769247e` on 2026-11-18; this is not a production deployment, security certification, or proof that external agents or customers are using the service.
+
+The final command opens a local stdio MCP server, intended to be launched and owned by a local MCP client. It is not an interactive command; do not send shell text into its protocol stdin. Example desktop client command configuration:
 
 ```json
 {
