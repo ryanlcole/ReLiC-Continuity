@@ -1,6 +1,7 @@
 """Run with the optional MCP SDK installed; no network or real data."""
 from __future__ import annotations
 
+import asyncio
 import pytest
 
 pytest.importorskip("mcp.server.mcpserver")
@@ -17,7 +18,7 @@ def test_real_sdk_registers_only_three_read_only_tools(tmp_path):
         summary="Synthetic event only",
     )
     server = create_server(str(ledger.path), "fixture")
-    tools = server.list_tools()
+    tools = asyncio.run(server.list_tools())
     names = {tool.name for tool in tools}
     assert names == {"verify_chain", "context_pack", "find_events"}
     for tool in tools:
