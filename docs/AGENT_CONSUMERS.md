@@ -46,8 +46,9 @@ The client must be trustworthy and the operating system must restrict access to 
 
 | Stage | Evidence required | Status |
 | --- | --- | --- |
-| Unit tests | Test project binding, bounded queries and integrity-failure behavior | PASS on GitHub Actions for Python 3.11, 3.12 and 3.13 at commit cae8bf2 (2026-11-18); MCP SDK integration not tested |
-| Protocol compatibility | A real MCP v2 client discovers and invokes all tools over stdio | UNKNOWN |
+| Unit tests | Test project binding, bounded queries and integrity-failure behavior | PASS on GitHub Actions for Python 3.11, 3.12 and 3.13 at commit 1c0c98c (2026-11-18) |
+| MCP SDK registration | Installed optional SDK registers exactly three tool schemas with synthetic data | PASS on GitHub Actions at commit 1c0c98c (2026-11-18); this does not invoke tools over stdio |
+| Protocol compatibility | A real MCP v2 client discovers and invokes all tools over stdio | UNKNOWN; no end-to-end client exchange verified |
 | Agent usefulness | A separate agent correctly distinguishes evidence from canon in a synthetic scenario | UNKNOWN |
 | Customer demand | A human operator or team demonstrates willingness to use/support it | UNKNOWN |
 | Commercial route | Owner-approved terms, payment method, pricing, consumer support, required legal/privacy review | NOT STARTED |
