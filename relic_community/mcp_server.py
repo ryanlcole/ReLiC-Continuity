@@ -7,6 +7,7 @@ Requires the separately installed optional MCP Python SDK v2.
 from __future__ import annotations
 
 import argparse
+from typing import Any
 from .agent_observer import AgentObserver
 
 
@@ -19,17 +20,17 @@ def create_server(database: str, project: str):
     server = MCPServer("ReLiC Community Read-Only")
 
     @server.tool()
-    def verify_chain() -> dict:
+    def verify_chain() -> dict[str, Any]:
         """Verify the local append-only hash chain; no independent truth attestation."""
         return observer.verify_chain()
 
     @server.tool()
-    def context_pack(limit: int = 10) -> dict:
+    def context_pack(limit: int = 10) -> dict[str, Any]:
         """Read bounded, non-canonical evidence references for one configured project."""
         return observer.context_pack(limit)
 
     @server.tool()
-    def find_events(kind: str, limit: int = 20) -> dict:
+    def find_events(kind: str, limit: int = 20) -> dict[str, Any]:
         """Read one supported event kind from one configured project; no raw data."""
         return observer.find_events(kind, limit)
 
