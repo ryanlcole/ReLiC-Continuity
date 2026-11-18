@@ -11,12 +11,12 @@ from .agent_observer import AgentObserver
 
 
 def create_server(database: str, project: str):
-    # FastMCP supplies the @tool decorator and stdio runner in the Python MCP SDK.
+    # MCP SDK v2 renamed FastMCP to MCPServer; v1 import fails in v2.
     # Import only on explicit MCP use: the core ledger remains dependency-free.
-    from mcp.server.fastmcp import FastMCP
+    from mcp.server.mcpserver import MCPServer
 
     observer = AgentObserver(database, project)
-    server = FastMCP("ReLiC Community Read-Only")
+    server = MCPServer("ReLiC Community Read-Only")
 
     @server.tool()
     def verify_chain() -> dict:
