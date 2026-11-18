@@ -24,6 +24,8 @@ def test_real_sdk_registers_only_three_read_only_tools(tmp_path):
     for tool in tools:
         assert tool.description
         assert tool.input_schema.get("type") == "object"
+        assert tool.output_schema is not None
+        assert tool.output_schema.get("type") == "object"
     assert not {"append", "write", "delete", "payment"} & names
 
 
