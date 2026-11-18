@@ -84,3 +84,40 @@ def test_mcp_adapter_import_remains_optional():
     # Optional mcp package is not needed merely to import the module.
     from relic_community.mcp_server import create_server
     assert callable(create_server)
+
+
+@pytest.mark.parametrize("method", ["context_pack", "find_events"])
+def test_verified_read_uses_same_snapshot_as_query(tmp_path, monkeypatch, method):
+    """A writer committing after verification must not enter the verified result."""
+    import relic_community.agent_observer as module
+
+    ledger = fixture(tmp_path)
+    with sqlite3.connect(ledger.path) as connection:
+        connection.execute("PRAGMA journal_mode=WAL")
+    original_verify = module._verify_rows
+    committed = []
+
+    def append_after_verification(rows):
+        report = original_verify(rows)
+        assert report.ok
+        if not committed:
+            ledger.append(
+                project="allowed", actor="fixture", kind="OBSERVATION",
+                state="OBSERVED", source_ref="opaque:later",
+                summary="Concurrent synthetic record",
+            )
+            committed.append(True)
+        return report
+
+    monkeypatch.setattr(module, "_verify_rows", append_after_verification)
+    agent = AgentObserver(ledger.path, "allowed")
+    result = (agent.context_pack() if method == "context_pack"
+              else agent.find_events("OBSERVATION"))
+    records = result["runes"] if method == "context_pack" else result["matches"]
+    assert committed == [True]
+    assert len(records) == 1
+    assert all(record["source_ref"] != "opaque:later" for record in records)
+    monkeypatch.setattr(module, "_verify_rows", original_verify)
+    after = (agent.context_pack() if method == "context_pack"
+             else agent.find_events("OBSERVATION"))
+    assert len(after["runes"] if method == "context_pack" else after["matches"]) == 2
