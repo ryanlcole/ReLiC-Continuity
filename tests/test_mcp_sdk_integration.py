@@ -1,10 +1,9 @@
 """Run with the optional MCP SDK installed; no network or real data."""
 from __future__ import annotations
 
-import asyncio
 import pytest
 
-pytest.importorskip("mcp.server.fastmcp")
+pytest.importorskip("mcp.server.mcpserver")
 
 from relic_community.ledger import ContinuityLedger
 from relic_community.mcp_server import create_server
@@ -18,12 +17,12 @@ def test_real_sdk_registers_only_three_read_only_tools(tmp_path):
         summary="Synthetic event only",
     )
     server = create_server(str(ledger.path), "fixture")
-    tools = asyncio.run(server.list_tools())
+    tools = server.list_tools()
     names = {tool.name for tool in tools}
     assert names == {"verify_chain", "context_pack", "find_events"}
     for tool in tools:
         assert tool.description
-        assert tool.inputSchema.get("type") == "object"
+        assert tool.input_schema.get("type") == "object"
     assert not {"append", "write", "delete", "payment"} & names
 
 
