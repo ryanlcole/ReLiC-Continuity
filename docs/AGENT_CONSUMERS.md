@@ -40,16 +40,16 @@ The final command opens a local stdio MCP server, intended to be launched and ow
 }
 ```
 
-The client must be trustworthy and the operating system must restrict access to the fixture file. The adapter intentionally does not implement network authentication, encryption, multi-user isolation or security certification. **A fixed project filter is not an OS security boundary:** the local chain verifier reads the full database, and the server process needs read access to the entire file. Use a separate fixture database per independent security domain; do not co-locate mutually untrusted projects in one database. Also, integrity verification and record retrieval currently use separate SQLite read transactions. A concurrent writer could change the ledger between those operations, so this adapter does **not** guarantee a single consistent verified snapshot. Keep the pilot on static synthetic fixtures until that race is resolved and tested. Paths in this example are placeholders, not a deployed endpoint.
+The client must be trustworthy and the operating system must restrict access to the fixture file. The adapter intentionally does not implement network authentication, encryption, multi-user isolation or security certification. **A fixed project filter is not an OS security boundary:** the local chain verifier reads the full database, and the server process needs read access to the entire file. Use a separate fixture database per independent security domain; do not co-locate mutually untrusted projects in one database. Integrity verification and record selection now use a **single SQLite read transaction**: synthetic concurrent-writer regression tests passed on GitHub Actions at commit `287ec7d` (2026-11-18). This establishes that later commits cannot enter those earlier verified results under the tested configuration; it is not a security certification and does not authenticate source content. Keep the pilot on synthetic fixtures; no independent security-domain boundary or public network service is provided. Paths in this example are placeholders, not a deployed endpoint.
 
 ## Falsifiable milestones
 
 | Stage | Evidence required | Status |
 | --- | --- | --- |
-| Unit tests | Test project binding, bounded queries and integrity-failure behavior | PASS on GitHub Actions for Python 3.11, 3.12 and 3.13 at commit edae22c (2026-11-18) |
-| MCP SDK registration | Installed optional SDK registers exactly three tool schemas with synthetic data | PASS on GitHub Actions at commit edae22c (2026-11-18); this does not invoke tools over stdio |
-| Consistent verified snapshot | Verify and query within one SQLite read transaction, including a concurrent-writer test | OPEN; current implementation uses separate transactions |
-| Protocol compatibility | A real MCP v2 client discovers and invokes all tools over stdio | UNKNOWN; no end-to-end client exchange verified |
+| Unit tests | Test project binding, bounded queries and integrity-failure behavior | PASS on GitHub Actions for Python 3.11, 3.12 and 3.13 at commit `287ec7d` (2026-11-18) |
+| MCP SDK registration | Installed optional SDK registers exactly three tool schemas with synthetic data | PASS on GitHub Actions at commit `287ec7d` (2026-11-18); registration is not an end-to-end client call |
+| Consistent verified snapshot | Verify and query within one SQLite read transaction, including a concurrent-writer test | PASS on GitHub Actions at commit `287ec7d` (2026-11-18), synthetic concurrent-writer tests |
+| Protocol compatibility | A real MCP v2 client discovers and invokes all tools over stdio | New subprocess client tests authored at commit `8303e3b`; CI result pending and not yet verified |
 | Agent usefulness | A separate agent correctly distinguishes evidence from canon in a synthetic scenario | UNKNOWN |
 | Customer demand | A human operator or team demonstrates willingness to use/support it | UNKNOWN |
 | Commercial route | Owner-approved terms, payment method, pricing, consumer support, required legal/privacy review | NOT STARTED |
