@@ -1,0 +1,54 @@
+name: ReLiC experimental autonomous ecology
+on:
+  schedule:
+    - cron: '17,37,57 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: relic-experimental-ecology
+  cancel-in-progress: false
+jobs:
+  evolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify standalone experiment
+        run: python -m unittest discover -s tests -p 'test_ecology.py' -q
+      - name: Restore state branch (or initialize new synthetic world)
+        shell: bash
+        run: |
+          git fetch origin +refs/heads/experiment-autonomous-ecology-state:refs/remotes/origin/experiment-autonomous-ecology-state || true
+          if git show-ref --verify --quiet refs/remotes/origin/experiment-autonomous-ecology-state; then
+            git show origin/experiment-autonomous-ecology-state:experiments/continuity_ecology/state.json > experiments/continuity_ecology/state.json
+          else
+            python experiments/continuity_ecology/run.py init
+          fi
+      - name: Advance environment without ChatGPT
+        run: python experiments/continuity_ecology/run.py tick --ticks 12
+      - name: Persist synthetic state on isolated noncanonical branch
+        shell: bash
+        run: |
+          git config user.name 'relic-ecology[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          cp experiments/continuity_ecology/state.json /tmp/relic-ecology-state.json
+          rm experiments/continuity_ecology/state.json
+          if git show-ref --verify --quiet refs/remotes/origin/experiment-autonomous-ecology-state; then
+            git checkout -b experiment-autonomous-ecology-state --track origin/experiment-autonomous-ecology-state
+          else
+            git checkout -b experiment-autonomous-ecology-state
+          fi
+          mkdir -p experiments/continuity_ecology
+          cp /tmp/relic-ecology-state.json experiments/continuity_ecology/state.json
+          git add experiments/continuity_ecology/state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "experiment: persist synthetic ecology tick"
+            git push origin HEAD:experiment-autonomous-ecology-state
+          fi

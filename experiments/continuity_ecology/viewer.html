@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>𓋹 ReLiC · Autonomous Ecology Observatory</title>
+<style>
+:root{font-family:ui-sans-serif,system-ui,Arial;background:#07121a;color:#ebf4f4;color-scheme:dark}
+*{box-sizing:border-box}body{max-width:1040px;margin:auto;padding:24px 16px}header{margin-bottom:25px}
+.eyebrow{color:#69c9a4;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+h1{font-size:clamp(24px,5vw,42px);line-height:1.15;margin:8px 0}p{color:#a8bdc2;line-height:1.5}
+.controls,.stats{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}button,input::file-selector-button{cursor:pointer;background:#183f41;color:#e7fff6;border:1px solid #3f8c7f;padding:10px 14px;border-radius:10px;font-weight:700}button:hover{background:#245657}input[type=file]{max-width:100%;padding:8px 0;color:#b9cbcf}
+.stat{min-width:120px;flex:1;padding:13px 16px;background:#10242c;border:1px solid #29434d;border-radius:12px}.stat b{display:block;font-size:26px}.stat small{color:#92abb2}
+.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,1fr);gap:18px}@media(max-width:710px){.layout{grid-template-columns:1fr}}
+.panel{background:#0c1d25;border:1px solid #29434d;padding:15px;border-radius:16px}.panel h2{font-size:17px;margin:4px 0 15px}
+canvas{display:block;width:100%;max-width:530px;aspect-ratio:1;background:#08161d;border-radius:8px;image-rendering:pixelated}
+.legend{font-size:12px;color:#b6c9cd;display:flex;gap:13px;flex-wrap:wrap;margin:12px 0 0}.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+.agent{border-top:1px solid #28434e;padding:10px 0}.agent b{display:block;font-size:14px}.agent small{display:block;color:#91afb8;margin-top:4px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#bad6dd;font:12px/1.55 ui-monospace,Menlo,monospace}
+strong{color:#e7fff6}.warning{color:#eac594}#status{min-height:23px}footer{margin-top:18px;font-size:12px;color:#839fa9}
+</style></head><body>
+<header><div class="eyebrow">𓋹 ReLiC · Future experiment / observed state</div>
+<h1>Autonomous Ecology Observatory</h1>
+<p>Observe the saved world after ChatGPT has stopped. This page does not fabricate ticks or modify the simulation. The engine, not the viewer, advances the ecosystem.</p></header>
+<div class="controls"><button id="reload">Load saved GitHub state</button><button id="open">Open local JSON</button><input type="file" id="file" accept=".json,application/json" hidden></div>
+<p id="status" role="status">No observation loaded. Choose a saved state.</p>
+<div class="stats"><div class="stat"><b id="tick">—</b><small>Simulated ticks</small></div><div class="stat"><b id="alive">—</b><small>Living organisms</small></div><div class="stat"><b id="plants">—</b><small>Living plants</small></div><div class="stat"><b id="learning">—</b><small>Learned states</small></div></div>
+<div class="layout"><section class="panel"><h2>Environment map</h2><canvas id="world" width="512" height="512" aria-label="Grid showing water, plants and organism positions"></canvas>
+<div class="legend"><span><i style="background:#27b681"></i>Plants</span><span><i style="background:#ffca63"></i>Parent A</span><span><i style="background:#db83f2"></i>Parent B</span><span><i style="background:#8ed7ff"></i>Offspring C</span><span><i style="background:#264b70"></i>Water</span></div></section>
+<section class="panel"><h2>Organism continuity</h2><div id="agents">No organisms loaded.</div><h2>Latest observed events</h2><pre id="events">—</pre></section></div>
+<footer>ReLiC's truth firewall: simulated observations are evidence about a model, not evidence of consciousness, Earth ecology, or real autonomous life. A SHA-256 event chain allows separate integrity verification by the Python engine.</footer>
+<script>
+const STATE_URL='https://raw.githubusercontent.com/ryanlcole/ReLiC-Continuity/experiment-autonomous-ecology-state/experiments/continuity_ecology/state.json';
+const $=s=>document.querySelector(s);let world=null;
+function draw(state){
+ if(state.schema!=='relic-ecology/1')throw Error('Unsupported state version');
+ world=state; const living=state.agents.filter(a=>a.status==='alive');
+ $('#tick').textContent=state.tick.toLocaleString();$('#alive').textContent=living.length;
+ $('#plants').textContent=state.plants.filter(p=>p.status==='alive').length;
+ $('#learning').textContent=state.agents.reduce((n,a)=>n+Object.keys(a.q||{}).length,0);
+ const canvas=$('#world'),ctx=canvas.getContext('2d'),sx=512/state.width,sy=512/state.height;
+ ctx.clearRect(0,0,512,512);
+ for(let y=0;y<state.height;y++)for(let x=0;x<state.width;x++){
+  let c=state.cells[y*state.width+x],shade=Math.round(17+Math.min(7,c.water)/7*52);
+  ctx.fillStyle=`rgb(9,${shade},${Math.round(shade*1.3)})`;ctx.fillRect(x*sx,y*sy,sx-.5,sy-.5);
+ }
+ for(const p of state.plants){if(p.status!=='alive')continue;ctx.beginPath();ctx.arc((p.x+.5)*sx,(p.y+.5)*sy,Math.max(2,sx*.27),0,Math.PI*2);ctx.fillStyle='#27b681';ctx.fill();}
+ const palette=['#ffca63','#db83f2','#8ed7ff'];
+ for(let i=0;i<state.agents.length;i++){let a=state.agents[i];if(a.status!=='alive')continue;
+ ctx.beginPath();ctx.arc((a.x+.5)*sx,(a.y+.5)*sy,sx*.35,0,Math.PI*2);
+ ctx.fillStyle=palette[i]||'#fff0c4';ctx.fill();ctx.fillStyle='#06131a';ctx.font=`bold ${Math.max(10,sx*.4)}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(a.id,(a.x+.5)*sx,(a.y+.5)*sy);
+ }
+ $('#agents').replaceChildren(...state.agents.map(a=>{const e=document.createElement('div');e.className='agent';const parent=a.parents.length?a.parents.join(' + '):'—';const status=a.status.toUpperCase();
+ e.innerHTML=`<b></b><small></small>`;e.querySelector('b').textContent=`${a.id} · ${status}`;e.querySelector('small').textContent=`Parentage: ${parent} · Energy: ${a.energy.toFixed(1)} · Water: ${a.hydration.toFixed(1)} · Learned: ${Object.keys(a.q||{}).length}`;return e;}));
+ $('#events').textContent=state.history.slice(-9).map(e=>`#${e.seq} · t${e.tick} · ${e.kind} · ${e.actor}`).join('\n')||'No events yet';
+ $('#status').textContent=`Snapshot loaded. Tick ${state.tick}; ${state.history.length} chained events. Status: observed simulation, not live telemetry.`;
+}
+async function fetchRemote(){try{$('#status').textContent='Reading the stored snapshot…';let r=await fetch(STATE_URL+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status+' (hosting may not be activated)');draw(await r.json());}catch(e){$('#status').textContent='Could not load hosted state: '+e.message+' — load a local JSON file instead.';}}
+$('#reload').onclick=fetchRemote;$('#open').onclick=()=>$('#file').click();$('#file').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{draw(JSON.parse(await f.text()));}catch(err){$('#status').textContent='Invalid snapshot: '+err.message;}};
+fetchRemote();
+</script></body></html>
