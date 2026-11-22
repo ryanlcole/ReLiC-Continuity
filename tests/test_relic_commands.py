@@ -104,3 +104,20 @@ def test_corrupted_ledger_prevents_command_reads(tmp_path):
         assert obj['status'] == 'INTEGRITY_FAILURE'
         assert obj['records_disclosed'] == 0
         assert 'runes' not in obj and 'matches' not in obj
+
+
+def test_storage_setup_command_is_instructions_not_a_connection(tmp_path):
+    _, obs = fixture(tmp_path)
+    for provider in ('google_drive', 'onedrive', 'dropbox', 'local_directory', 'other'):
+        response = dispatch_command('@ReLiC Setup ' + provider, obs)
+        assert response['status'] == 'SETUP_REQUIRED'
+        setup = response['setup']
+        assert setup['provider'] == provider
+        assert setup['project'] == 'demo'
+        assert setup['connection_verified'] is False
+        assert setup['write_authority'] is False
+    default = dispatch_command('@ReLiC Setup', obs)
+    assert default['setup']['provider'] == 'google_drive'
+    unknown = dispatch_command('@ReLiC Setup invented-host', obs)
+    assert unknown['status'] == 'UNSUPPORTED_PROVIDER'
+    assert 'invented-host' not in str(unknown)
