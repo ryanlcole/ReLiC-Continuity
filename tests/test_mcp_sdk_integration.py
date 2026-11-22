@@ -20,7 +20,7 @@ def test_real_sdk_registers_only_three_read_only_tools(tmp_path):
     server = create_server(str(ledger.path), "fixture")
     tools = asyncio.run(server.list_tools())
     names = {tool.name for tool in tools}
-    assert names == {"verify_chain", "context_pack", "find_events"}
+    assert names == {"verify_chain", "context_pack", "find_events", "relic_command"}
     for tool in tools:
         assert tool.description
         assert tool.input_schema.get("type") == "object"
