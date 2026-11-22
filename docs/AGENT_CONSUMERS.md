@@ -12,7 +12,7 @@ The reference project is Apache-2.0 with voluntary donations. Do not add fees or
 
 - Local **stdio** only. No HTTP listener, cloud account, domain, wallet or external ReLiC service.
 - Existing fixture database **only**; configuration requires one fixed project identifier. Never expose or copy a real private ReLiC database.
-- Tools: `verify_chain`, `context_pack(limit)`, `find_events(kind, limit)`.
+- Tools: `verify_chain`, `context_pack(limit)`, `find_events(kind, limit)`, and `relic_command(message)` (bounded local read-only @ReLiC parser).
 - No tools for append, delete, update, business contact, posting, purchase, transfer or payment.
 - Verified local hash-chain consistency is **not** proof of underlying event truth or independent nonrepudiation.
 - Each record is `NON_CANONICAL`. Failed chain verification blocks records from both query tools.
@@ -67,3 +67,68 @@ The client must be trustworthy and the operating system must restrict access to 
 6. Record receipts, fees, refunds, expenses and taxes accurately; never represent donations, pledges, demo payments or revenue as profit.
 
 No PayPal transfer or charge is made by this pilot.
+
+## Public local @ReLiC command interface (owner review required)
+
+The optional local MCP adapter now provides a fourth tool, `relic_command(message)`.
+A compatible MCP client can forward a **literal** command such as
+`@ReLiC Status` to this tool. That is a local read-only implementation
+against the **one explicitly configured synthetic SQLite fixture**. It is not
+the original remote `@ReLiC` ChatGPT connector and does not register a global
+mention, install a ChatGPT plugin, authenticate external users, or deploy a
+public network endpoint.
+
+Supported local commands are:
+
+- `@ReLiC Help`: list supported local commands and unavailable features
+- `@ReLiC Status` and `@ReLiC Checkup`: local chain integrity and one
+  bounded metadata rune, with external systems marked UNKNOWN/NOT_CHECKED
+- `@ReLiC Continue`, `@ReLiC relic`, `@ReLiC Load`: a bounded read-only
+  context pack from the single configured synthetic project
+- `@ReLiC Verify chain`: verify **only internal local hash consistency**;
+  arbitrary claims return UNKNOWN
+- `@ReLiC Trace OBSERVATION` (or another known event kind): only bounded
+  non-sensitive source references from the configured fixture database
+
+Unsupported commands such as `Save`, `Next`, `Amend`, `Smile`,
+`Pause`, `Resume`, and `Quit` **return UNAVAILABLE** instead of claiming
+that a protected operation was performed. Input is bounded; no user-supplied
+text is returned in error responses. A compromised or mismatched local chain
+is not disclosed via context/trace. The local fixture hash chain is not
+proof that any external record is true.
+
+An example client mapping (configure with trusted local paths):
+```json
+{
+  "mcpServers": {
+    "relic-public-reference": {
+      "command": "python",
+      "args": ["-m", "relic_community.mcp_server",
+               "--db", "/absolute/path/to/synthetic.sqlite3",
+               "--project", "demo"]
+    }
+  }
+}
+```
+
+Install using `python -m pip install -e '.[mcp]'` from this repository's
+reviewed source on a local development machine. Run `python -m pytest -q`
+first. The current MCP SDK v2 examples are intentionally version bounded.
+The `relic_command` tool does not create a database; fixture setup remains
+a separate owner-controlled CLI action. Do not point this server at real
+private continuity records or expose its stdio process over unauthenticated
+HTTP or untrusted remote tool proxies.
+
+**Public availability has two levels:**
+1. This GitHub source and PR are publicly readable while under review.
+2. Publication of the local MCP adapter as a released package, a hosted
+   remote service, or a ChatGPT plugin is **NOT** established by public code
+   alone. Explicit human release review and infrastructure permissions are
+   separate steps. The existing historical ReLiC plugin may be unavailable
+   due to an upstream connector error; this reference does not fix it.
+
+If the ChatGPT-hosted historical ReLiC connector returns an HTTP 429 before
+any tool response, mark `REMOTE_RELIC_UNAVAILABLE`; do **not** retry
+indefinitely, mislabel the error as an empty project ledger, substitute public
+synthetic data for private history, or fake a save receipt. Public GitHub
+project records may support a separately identified fallback answer.
