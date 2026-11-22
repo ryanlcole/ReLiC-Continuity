@@ -132,6 +132,31 @@ def test_reject_manifest_additions_and_canon_claims():
             validate_binding(bad)
 
 
+def test_each_canonical_source_requires_its_own_proven_read_access():
+    binding = sample()
+    called = []
+
+    def restricted(provider, folder_ref, project):
+        called.append(folder_ref)
+        return {
+            "folder_ref": folder_ref, "account_scoped": True,
+            "can_read": folder_ref != "document-two",
+        }
+
+    denied = verify_connection(binding, restricted)
+    assert denied["status"] == "SOURCE_ACCESS_DENIED"
+    assert denied["write_authority"] is False
+    assert called == ["project-folder-id", "document-one", "document-two"]
+
+
+@pytest.mark.parametrize("ref", [
+    "foo/../secrets", "foo/./doc", "foo//doc", "https://drive.google.com/file",
+])
+def test_unsafe_provider_references_are_never_accepted(ref):
+    with pytest.raises(StorageSetupError):
+        create_binding(project="demo", provider="other", folder_ref=ref)
+
+
 def test_no_storage_mutation_is_exposed_by_setup_contract():
     import relic_community.storage_onboarding as module
     assert not hasattr(module, "append_event")
