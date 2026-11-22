@@ -49,7 +49,7 @@ def test_actual_stdio_client_lists_and_invokes_tools(tmp_path):
         async with Client(_params(ledger.path), read_timeout_seconds=10) as client:
             listed = await client.list_tools()
             assert {t.name for t in listed.tools} == {
-                "verify_chain", "context_pack", "find_events"
+                "verify_chain", "context_pack", "find_events", "relic_command"
             }
             assert all(t.input_schema.get("type") == "object" for t in listed.tools)
 
@@ -66,6 +66,21 @@ def test_actual_stdio_client_lists_and_invokes_tools(tmp_path):
             assert len(p["runes"]) == 1
             assert p["runes"][0]["source_ref"] == "opaque:allowed-one"
             assert "other-one" not in str(p)
+
+            command = await client.call_tool(
+                "relic_command", {"message": "@ReLiC Status"}
+            )
+            assert command.is_error is False
+            assert command.structured_content["status"] == "OK"
+            assert command.structured_content["remote_service"] == "NOT_CHECKED"
+            assert command.structured_content["local_chain"]["ok"] is True
+
+            blocked = await client.call_tool(
+                "relic_command", {"message": "@ReLiC Save"}
+            )
+            assert blocked.is_error is False
+            assert blocked.structured_content["status"] == "UNAVAILABLE"
+            assert blocked.structured_content["automated_write"] is False
 
             found = await client.call_tool(
                 "find_events", {"kind": "OBSERVATION", "limit": 10}
