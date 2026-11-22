@@ -68,6 +68,10 @@ The client must be trustworthy and the operating system must restrict access to 
 
 No PayPal transfer or charge is made by this pilot.
 
+## Per-user bring-your-own-storage onboarding
+
+Users may start with Google Drive, OneDrive, Dropbox, a local directory, or another approved storage provider. The actual setup contract and human-readable workflow are in [STORAGE_ONBOARDING.md](STORAGE_ONBOARDING.md). The MCP tool understands `@ReLiC Setup google_drive` or the corresponding provider name. This only returns instructions; an authenticated host adapter must independently verify the chosen folder and each explicitly selected canonical source. Evidence writes require a separately authorized folder and an append protocol. No user-private content or credentials are shipped in the public package.
+
 ## Public local @ReLiC command interface (owner review required)
 
 The optional local MCP adapter now provides a fourth tool, `relic_command(message)`.
