@@ -61,6 +61,8 @@ See [`docs/AI_INVITATION.md`](docs/AI_INVITATION.md) and machine-readable [`CONT
 
 A reviewed **draft** integration is available at [PR #3](https://github.com/ryanlcole/ReLiC-Continuity/pull/3). It adds a local-only, read-only MCP server for AI clients and a `relic_command(message)` tool that accepts literal text such as `@ReLiC Status`. The feature does **not** resolve the historical private remote ReLiC service's API connection or grant canonical authority. Do not treat an HTTP 429 from that remote service as proof that any source database is empty.
 
+For per-user storage onboarding, see [docs/STORAGE_ONBOARDING.md](docs/STORAGE_ONBOARDING.md). A person with Google Drive, OneDrive, Dropbox, or another connected storage provider must still select one project folder and authorize any app-specific access. The local MCP now understands `@ReLiC Setup google_drive` and returns a bounded setup plan, not a claim that Drive is connected.
+
 For a synthetic local demo after reviewing the PR branch:
 
 ```sh
