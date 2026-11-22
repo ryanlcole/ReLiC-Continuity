@@ -51,8 +51,36 @@ Grimoire's `relic_observer.py` is a **read-only workflow observer**. This reposi
 
 ## Publication status
 
-Prepared for an independently created public GitHub repository. This source archive is not itself proof of GitHub publication. Contributions are welcome through reviewed PRs once its actual repository URL is known.
+This repository is publicly readable at https://github.com/ryanlcole/ReLiC-Continuity under Apache-2.0. The publicly available reference source is NOT a hosted MCP service, public ReLiC event database, or an installation of the historical private ChatGPT @ReLiC plugin. Review and release gates apply to optional new adapters.
 
 ## AI and human contributor invitation
 
 See [`docs/AI_INVITATION.md`](docs/AI_INVITATION.md) and machine-readable [`CONTRIBUTION_TASKS.json`](CONTRIBUTION_TASKS.json). These are discoverable instructions for would-be contributors, **not evidence that messages have been sent or that any agent is participating**.
+
+## Optional public local @ReLiC MCP client
+
+A reviewed **draft** integration is available at [PR #3](https://github.com/ryanlcole/ReLiC-Continuity/pull/3). It adds a local-only, read-only MCP server for AI clients and a `relic_command(message)` tool that accepts literal text such as `@ReLiC Status`. The feature does **not** resolve the historical private remote ReLiC service's API connection or grant canonical authority. Do not treat an HTTP 429 from that remote service as proof that any source database is empty.
+
+For per-user storage onboarding, see [docs/STORAGE_ONBOARDING.md](docs/STORAGE_ONBOARDING.md). A person with Google Drive, OneDrive, Dropbox, or another connected storage provider must still select one project folder and authorize any app-specific access. The local MCP now understands `@ReLiC Setup google_drive` and returns a bounded setup plan, not a claim that Drive is connected.
+
+For a synthetic local demo after reviewing the PR branch:
+
+```sh
+git clone https://github.com/ryanlcole/ReLiC-Continuity.git
+cd ReLiC-Continuity
+git switch agent-consumers/local-readonly-mcp-2026-11-18
+python -m pip install -e '.[mcp]' pytest
+python -m pytest -q
+python -m relic_community.cli --db ./synthetic.sqlite3 init
+python -m relic_community.cli --db ./synthetic.sqlite3 append \
+  --project demo --actor fixture --kind OBSERVATION --state OBSERVED \
+  --source-ref opaque:sample --summary 'Synthetic sample only'
+relic-community-mcp --db ./synthetic.sqlite3 --project demo
+```
+
+The last line starts a stdio transport for an MCP-capable local agent. It is **not** a shell chatbot and does not listen on HTTP. The client should call `relic_command` with messages such as `@ReLiC Help`, `@ReLiC Continue`, `@ReLiC Status`, `@ReLiC Verify chain`, or `@ReLiC Trace OBSERVATION`. Unsupported commands, including `@ReLiC Save`, report UNAVAILABLE instead of making false persistence claims.
+
+Further explanation, bounded evidence semantics and example client configuration:
+[docs/AGENT_CONSUMERS.md](docs/AGENT_CONSUMERS.md).
+
+**Publication boundary:** Anyone may inspect this open-source review branch, but a reviewed merge, public hosted endpoint and separately authorized ChatGPT plugin listing are distinct milestones. Public code alone does not make the original private @ReLiC connector operational. No real ReLiC/private event records are included.

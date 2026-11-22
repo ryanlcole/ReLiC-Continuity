@@ -12,8 +12,12 @@ readme = "README.md"
 authors = [{name="ReLiC Community Contributors"}]
 dependencies = []
 
+[project.optional-dependencies]
+mcp = ["mcp>=2.0,<3"]
+
 [project.scripts]
 relic-community = "relic_community.cli:main"
+relic-community-mcp = "relic_community.mcp_server:main"
 
 [tool.setuptools.packages.find]
 include = ["relic_community*"]
