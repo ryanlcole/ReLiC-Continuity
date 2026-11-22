@@ -100,6 +100,7 @@ def test_corrupted_ledger_prevents_command_reads(tmp_path):
     for cmd in ('Continue', 'Trace OBSERVATION'):
         body = dispatch_command('@ReLiC ' + cmd, obs)
         obj = body.get('context') or body.get('result')
+        assert body['status'] == 'INTEGRITY_FAILURE'
         assert obj['status'] == 'INTEGRITY_FAILURE'
         assert obj['records_disclosed'] == 0
         assert 'runes' not in obj and 'matches' not in obj
