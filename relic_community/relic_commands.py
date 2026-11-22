@@ -59,7 +59,10 @@ def dispatch_command(message: str, observer: Any) -> dict[str, Any]:
     if command in ("relic", "continue", "load"):
         if argument:
             return result("UNSUPPORTED_ARGUMENT")
-        return result("OK", command="Continue", context=observer.context_pack(limit=10),
+        context = observer.context_pack(limit=10)
+        if context.get("status") == "INTEGRITY_FAILURE":
+            return result("INTEGRITY_FAILURE", context=context, records_disclosed=0)
+        return result("OK", command="Continue", context=context,
                       coverage="LOCAL_FIXTURE_ONLY; NOT_A_FULL_PROJECT_RECONCILIATION")
     if command in ("status", "checkup"):
         if argument:
@@ -88,7 +91,10 @@ def dispatch_command(message: str, observer: Any) -> dict[str, Any]:
         kind = argument.upper()
         if kind not in _SUPPORTED_KINDS:
             return result("UNKNOWN", reason="TRACE_REQUIRES_A_KNOWN_LOCAL_EVENT_KIND")
-        return result("OK", command="Trace", result=observer.find_events(kind, limit=10),
+        found = observer.find_events(kind, limit=10)
+        if found.get("status") == "INTEGRITY_FAILURE":
+            return result("INTEGRITY_FAILURE", result=found, records_disclosed=0)
+        return result("OK", command="Trace", result=found,
                       guarantee="LOCAL_BOUNDED_METADATA_ONLY")
     if command == "save":
         return result("UNAVAILABLE", reason="PUBLIC_ADAPTER_HAS_NO_WRITER")
