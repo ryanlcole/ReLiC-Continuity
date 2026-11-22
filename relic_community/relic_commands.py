@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import re
 from typing import Any
+from .storage_onboarding import PROVIDERS, StorageSetupError, plan_setup
 
 _COMMAND = re.compile(r"^@relic(?:\s+([a-z]+))?(?:\s+([^\r\n]+))?$", re.IGNORECASE)
 _SUPPORTED_KINDS = frozenset({
@@ -14,12 +15,13 @@ _SUPPORTED_KINDS = frozenset({
     "TEST_RESULT", "HYPOTHESIS", "WARNING", "ERROR", "CONTRADICTION",
     "COMPLIANCE_CHECK", "DRIFT", "UNKNOWN",
 })
-_SUPPORTED = ("Help", "Status", "Checkup", "Continue", "Load",
+_SUPPORTED = ("Help", "Setup [google_drive|onedrive|dropbox|local_directory|other]",
+              "Status", "Checkup", "Continue", "Load",
               "Verify chain", "Trace <EVENT_KIND>")
 _RECOGNIZED = frozenset({
     "help", "status", "checkup", "continue", "load", "relic", "verify", "trace",
     "save", "quit", "pause", "resume", "smile", "wink", "milestone", "drift",
-    "guard", "test", "handoff", "next", "idea", "amend",
+    "guard", "test", "handoff", "next", "idea", "amend", "setup",
 })
 
 
@@ -56,6 +58,13 @@ def dispatch_command(message: str, observer: Any) -> dict[str, Any]:
             return result("UNSUPPORTED_ARGUMENT")
         return result("OK", supported=list(_SUPPORTED),
                       other_commands="UNAVAILABLE_IN_LOCAL_REFERENCE")
+    if command == "setup":
+        provider = argument.lower() or "google_drive"
+        if provider not in PROVIDERS:
+            return result("UNSUPPORTED_PROVIDER", supported_providers=list(PROVIDERS))
+        return result("SETUP_REQUIRED", setup=plan_setup(
+            provider=provider, project=observer._project
+        ))
     if command in ("relic", "continue", "load"):
         if argument:
             return result("UNSUPPORTED_ARGUMENT")
