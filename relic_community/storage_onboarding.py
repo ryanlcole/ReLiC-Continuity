@@ -31,7 +31,9 @@ def _ident(value: Any, label: str) -> str:
 
 def _reference(value: Any, label: str) -> str:
     # Opaque provider-owned ID/path, not a URL, password, OAuth token or filename.
-    if type(value) is not str or not _REF.fullmatch(value):
+    if (type(value) is not str or not _REF.fullmatch(value)
+        or value.lower().startswith(("http:", "https:"))
+        or any(part in ("", ".", "..") for part in value.split("/"))):
         raise StorageSetupError(f"Invalid {label}")
     return value
 
@@ -145,6 +147,19 @@ def verify_connection(binding: dict[str, Any],
     if not isinstance(checked, dict) or checked.get("folder_ref") != validated["folder_ref"] or (
         checked.get("account_scoped") is not True or checked.get("can_read") is not True):
         return {**result, "status": "ACCESS_DENIED"}
+    # A project-folder probe never establishes authorization for unrelated
+    # explicitly selected source file IDs. Verify every source independently.
+    for source_ref in validated["canonical_source_refs"]:
+        try:
+            source = probe(validated["provider"], source_ref, validated["project"])
+        except Exception:
+            return {**result, "status": "SOURCE_ACCESS_UNAVAILABLE"}
+        if (not isinstance(source, dict)
+            or source.get("folder_ref") != source_ref
+            or source.get("account_scoped") is not True
+            or source.get("can_read") is not True):
+            return {**result, "status": "SOURCE_ACCESS_DENIED"}
+
     if validated["mode"] == "append_evidence":
         # A separately authorized *evidence* folder must be checked too.
         try:
