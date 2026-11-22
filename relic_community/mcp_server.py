@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 from typing import Any
 from .agent_observer import AgentObserver
+from .relic_commands import dispatch_command
 
 
 def create_server(database: str, project: str):
@@ -33,6 +34,11 @@ def create_server(database: str, project: str):
     def find_events(kind: str, limit: int = 20) -> dict[str, Any]:
         """Read one supported event kind from one configured project; no raw data."""
         return observer.find_events(kind, limit)
+
+    @server.tool()
+    def relic_command(message: str) -> dict[str, Any]:
+        """Read-only local @ReLiC command parser; no canon, remote access, or writer."""
+        return dispatch_command(message, observer)
 
     return server
 
