@@ -75,6 +75,15 @@ def test_actual_stdio_client_lists_and_invokes_tools(tmp_path):
             assert command.structured_content["remote_service"] == "NOT_CHECKED"
             assert command.structured_content["local_chain"]["ok"] is True
 
+            setup = await client.call_tool(
+                "relic_command", {"message": "@ReLiC Setup google_drive"}
+            )
+            assert setup.is_error is False
+            assert setup.structured_content["status"] == "SETUP_REQUIRED"
+            assert setup.structured_content["setup"]["connection_verified"] is False
+            assert setup.structured_content["setup"]["provider"] == "google_drive"
+            assert setup.structured_content["setup"]["write_authority"] is False
+
             blocked = await client.call_tool(
                 "relic_command", {"message": "@ReLiC Save"}
             )
