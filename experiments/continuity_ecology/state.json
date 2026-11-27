@@ -1,11 +1,11 @@
 {
   "agents": [
     {
-      "age": 252,
-      "energy": 36.119999999999635,
-      "hydration": 83.32051249064406,
+      "age": 264,
+      "energy": 31.079999999999615,
+      "hydration": 85.01851249064408,
       "id": "A",
-      "last_action": 4,
+      "last_action": 1,
       "parents": [],
       "q": {
         "0000": [
@@ -26,7 +26,7 @@
           -0.818073,
           -0.889393,
           -0.882204,
-          -0.481385,
+          -0.45177,
           -0.778743
         ],
         "0011": [
@@ -45,10 +45,10 @@
         ],
         "1010": [
           -0.447786,
-          0.426849,
-          -0.525653,
+          -0.070165,
+          -0.42256,
           -0.453839,
-          0.070254
+          0.045971
         ],
         "1011": [
           0.0,
@@ -58,15 +58,15 @@
           0.445069
         ]
       },
-      "seen": 252,
+      "seen": 264,
       "status": "alive",
-      "x": 7,
-      "y": 5
+      "x": 5,
+      "y": 0
     },
     {
-      "age": 252,
-      "energy": 32.490405374164425,
-      "hydration": 85.24952087804718,
+      "age": 264,
+      "energy": 27.780405374164413,
+      "hydration": 85.27352087804718,
       "id": "B",
       "last_action": 2,
       "parents": [],
@@ -100,11 +100,11 @@
           0.0
         ],
         "1010": [
-          -0.135599,
-          -0.160864,
-          0.146046,
-          -0.160864,
-          -0.160864
+          -0.286174,
+          -0.271502,
+          -0.248361,
+          -0.211238,
+          -0.241395
         ],
         "1011": [
           0.756504,
@@ -114,17 +114,17 @@
           0.0
         ]
       },
-      "seen": 252,
+      "seen": 264,
       "status": "alive",
-      "x": 1,
-      "y": 5
+      "x": 2,
+      "y": 9
     },
     {
-      "age": 252,
-      "energy": 49.98352175841656,
-      "hydration": 85.19274031581732,
+      "age": 264,
+      "energy": 53.96352175841653,
+      "hydration": 85.21674031581732,
       "id": "C",
-      "last_action": 2,
+      "last_action": 4,
       "parents": [
         "A",
         "B"
@@ -145,11 +145,11 @@
           0.026691
         ],
         "0010": [
-          -0.590846,
+          -0.685409,
           -0.625907,
           -0.648528,
-          -0.588923,
-          -0.584494
+          2.402257,
+          -0.20636
         ],
         "1010": [
           -0.035496,
@@ -159,10 +159,10 @@
           0.0
         ]
       },
-      "seen": 136,
+      "seen": 143,
       "status": "alive",
-      "x": 3,
-      "y": 5
+      "x": 4,
+      "y": 4
     }
   ],
   "cells": [
@@ -188,7 +188,7 @@
     },
     {
       "carbon": 7.0,
-      "water": 7.0
+      "water": 6.917901911634365
     },
     {
       "carbon": 7.0,
@@ -304,7 +304,7 @@
     },
     {
       "carbon": 0.0,
-      "water": 0.05067644811911
+      "water": 0.25252786800001387
     },
     {
       "carbon": 7.0,
@@ -319,8 +319,8 @@
       "water": 7.0
     },
     {
-      "carbon": 0.26581068293755034,
-      "water": 0.0
+      "carbon": 0.07737179703900207,
+      "water": 0.013412533982355701
     },
     {
       "carbon": 7.0,
@@ -335,8 +335,8 @@
       "water": 7.0
     },
     {
-      "carbon": 0.24093901033224668,
-      "water": 0.0
+      "carbon": 0.05250012443369842,
+      "water": 0.013412533982355701
     },
     {
       "carbon": 7.0,
@@ -352,19 +352,7 @@
     },
     {
       "carbon": 0.0,
-      "water": 0.8085081393957905
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 6.983459555347892
+      "water": 1.010359559276695
     },
     {
       "carbon": 7.0,
@@ -393,46 +381,6 @@
     {
       "carbon": 7.0,
       "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 6.983459555347892
     },
     {
       "carbon": 7.0,
@@ -500,6 +448,310 @@
     },
     {
       "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 0.0,
+      "water": 0.34636490340363696
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 0.2469466189050972,
+      "water": 0.013412533982355701
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 0.0,
+      "water": 2.1783025973676446
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 0.0,
+      "water": 1.3570627390450531
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
+      "water": 7.0
+    },
+    {
+      "carbon": 7.0,
       "water": 6.82
     },
     {
@@ -512,258 +764,6 @@
     },
     {
       "carbon": 7.0,
-      "water": 6.882661202130293
-    },
-    {
-      "carbon": 7.0,
-      "water": 6.803459555347892
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 0.0,
-      "water": 0.3245134835227331
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 0.4353855048036454,
-      "water": 0.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 0.0,
-      "water": 1.976451177486742
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 0.0,
-      "water": 1.1552113191641484
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
-      "water": 7.0
-    },
-    {
-      "carbon": 7.0,
       "water": 7.0
     },
     {
@@ -816,7 +816,7 @@
     },
     {
       "carbon": 0.0,
-      "water": 0.762190182418264
+      "water": 0.9640416022991685
     },
     {
       "carbon": 7.0,
@@ -832,7 +832,7 @@
     },
     {
       "carbon": 0.0,
-      "water": 1.0633416410290573
+      "water": 1.265193060909962
     },
     {
       "carbon": 7.0,
@@ -848,7 +848,7 @@
     },
     {
       "carbon": 0.0,
-      "water": 1.1295399494062415
+      "water": 1.3313913692871462
     },
     {
       "carbon": 7.0,
@@ -864,7 +864,7 @@
     },
     {
       "carbon": 0.0,
-      "water": 2.1923232508061434
+      "water": 2.3941746706870455
     },
     {
       "carbon": 7.0,
@@ -1072,7 +1072,7 @@
     },
     {
       "carbon": 0.0,
-      "water": 2.1332790936039916
+      "water": 2.3351305134848936
     },
     {
       "carbon": 7.0,
@@ -1088,7 +1088,7 @@
     },
     {
       "carbon": 0.0,
-      "water": 0.3933308265563006
+      "water": 0.5951822464372049
     },
     {
       "carbon": 7.0,
@@ -1104,7 +1104,7 @@
     },
     {
       "carbon": 0.0,
-      "water": 0.1186235561502338
+      "water": 0.32047497603113767
     },
     {
       "carbon": 7.0,
@@ -1119,8 +1119,8 @@
       "water": 7.0
     },
     {
-      "carbon": 0.04415785242097259,
-      "water": 0.0
+      "carbon": 0.0,
+      "water": 0.15769356745993135
     },
     {
       "carbon": 7.0,
@@ -9933,12 +9933,376 @@
       "previous": "1256d1f73422dad0cd7bb82430632dc52d9fff65c2f2b9cf6528964f93a89058",
       "seq": 671,
       "tick": 252
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "d315d5f7447ed54d711576fe88c4cb5c366e6c5695f5d61b862dbb2f37c8cce0",
+      "kind": "resource_use",
+      "previous": "df05e15135a8b33c8adf931d3847b047e12ba1f1e2ff5588d93f92a8496e5be8",
+      "seq": 672,
+      "tick": 253
+    },
+    {
+      "actor": "B",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "28d05ed3157e9e610b12f1261b98cd092ef3200d907d62f1439652a5e1086bf8",
+      "kind": "resource_use",
+      "previous": "d315d5f7447ed54d711576fe88c4cb5c366e6c5695f5d61b862dbb2f37c8cce0",
+      "seq": 673,
+      "tick": 253
+    },
+    {
+      "actor": "C",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "0d976f62d13c609fe61412f9c77ce3d66bb812b80f1c1b1224d4f78fe1da300a",
+      "kind": "resource_use",
+      "previous": "28d05ed3157e9e610b12f1261b98cd092ef3200d907d62f1439652a5e1086bf8",
+      "seq": 674,
+      "tick": 253
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "44edb9e438b48f3bf866cc850da28203f7c65c0b82ca0488533070b5d2bef2a0",
+      "kind": "resource_use",
+      "previous": "0d976f62d13c609fe61412f9c77ce3d66bb812b80f1c1b1224d4f78fe1da300a",
+      "seq": 675,
+      "tick": 254
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "3e1f3ce6d846fb19246bf54d0b53e20e05f146c06ecdd917cdf8692d1bc085fe",
+      "kind": "resource_use",
+      "previous": "44edb9e438b48f3bf866cc850da28203f7c65c0b82ca0488533070b5d2bef2a0",
+      "seq": 676,
+      "tick": 255
+    },
+    {
+      "actor": "B",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "54462a320e6bb971be7e0d91f95162ad0e784e57ee1782fc57c63acdd11cb711",
+      "kind": "resource_use",
+      "previous": "3e1f3ce6d846fb19246bf54d0b53e20e05f146c06ecdd917cdf8692d1bc085fe",
+      "seq": 677,
+      "tick": 255
+    },
+    {
+      "actor": "C",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "01f95e982ce85a0106359054af28f989a2b0d5ba97613f8682f52390df8043af",
+      "kind": "resource_use",
+      "previous": "54462a320e6bb971be7e0d91f95162ad0e784e57ee1782fc57c63acdd11cb711",
+      "seq": 678,
+      "tick": 255
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "13f2088048e917697eb5ab881b38fa0e91fb50ea1d703fb90678759f26daf4c5",
+      "kind": "resource_use",
+      "previous": "01f95e982ce85a0106359054af28f989a2b0d5ba97613f8682f52390df8043af",
+      "seq": 679,
+      "tick": 256
+    },
+    {
+      "actor": "B",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "1bb5d1bd1afd222d1a67ab3cbc32e9bf43b763d22da3edcd7100023cfeeb0984",
+      "kind": "resource_use",
+      "previous": "13f2088048e917697eb5ab881b38fa0e91fb50ea1d703fb90678759f26daf4c5",
+      "seq": 680,
+      "tick": 256
+    },
+    {
+      "actor": "C",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "24a8377f9baa21aeafa5384bf114704ecda272d68395bbcfa17fcb780f248f1b",
+      "kind": "resource_use",
+      "previous": "1bb5d1bd1afd222d1a67ab3cbc32e9bf43b763d22da3edcd7100023cfeeb0984",
+      "seq": 681,
+      "tick": 256
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "96d3bea60bd9c0df53e86b89498c77d7b3e77b2c9045119a14c5dcfcd08e16e3",
+      "kind": "resource_use",
+      "previous": "24a8377f9baa21aeafa5384bf114704ecda272d68395bbcfa17fcb780f248f1b",
+      "seq": 682,
+      "tick": 257
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "c4926ddc1be4d73c6429dda2d02cff3a4ff7fb0f012c3f2a73b62b00e3033638",
+      "kind": "resource_use",
+      "previous": "96d3bea60bd9c0df53e86b89498c77d7b3e77b2c9045119a14c5dcfcd08e16e3",
+      "seq": 683,
+      "tick": 258
+    },
+    {
+      "actor": "B",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "48a9c961faceee2854719e1e24012eae57c68ae9aa08b165b4996cafce5ba1a0",
+      "kind": "resource_use",
+      "previous": "c4926ddc1be4d73c6429dda2d02cff3a4ff7fb0f012c3f2a73b62b00e3033638",
+      "seq": 684,
+      "tick": 258
+    },
+    {
+      "actor": "C",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.55,
+        "water": 0.18
+      },
+      "hash": "2de43646fbd1528be7e63eecedbac4c0d1146380c3d7f200d7eccae51bd7888c",
+      "kind": "resource_use",
+      "previous": "48a9c961faceee2854719e1e24012eae57c68ae9aa08b165b4996cafce5ba1a0",
+      "seq": 685,
+      "tick": 258
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "1cac32a67eebd7c1b8dc5d2405fa56a1dc8184ff7786d5833ddab1002d5fc540",
+      "kind": "resource_use",
+      "previous": "2de43646fbd1528be7e63eecedbac4c0d1146380c3d7f200d7eccae51bd7888c",
+      "seq": 686,
+      "tick": 259
+    },
+    {
+      "actor": "B",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "a49ddb181c8a92da7dfe8d3b7995475e00f24f3f828c7b7c252a5c9e95fd7fa2",
+      "kind": "resource_use",
+      "previous": "1cac32a67eebd7c1b8dc5d2405fa56a1dc8184ff7786d5833ddab1002d5fc540",
+      "seq": 687,
+      "tick": 259
+    },
+    {
+      "actor": "C",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "9ce627ab16dbd6e44d87bd76e8a986760dbe0e3df8d3466150cde32ec2116a66",
+      "kind": "resource_use",
+      "previous": "a49ddb181c8a92da7dfe8d3b7995475e00f24f3f828c7b7c252a5c9e95fd7fa2",
+      "seq": 688,
+      "tick": 259
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "84c2dbdaa15873b7c1231071de01667ab596fc64090ea32d613fae17eb7c5be6",
+      "kind": "resource_use",
+      "previous": "9ce627ab16dbd6e44d87bd76e8a986760dbe0e3df8d3466150cde32ec2116a66",
+      "seq": 689,
+      "tick": 260
+    },
+    {
+      "actor": "C",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.55,
+        "water": 0.0
+      },
+      "hash": "ecf9f7806a409d18e9b1cef80b928751a165dd9f96947434d985ccacb4f32c04",
+      "kind": "resource_use",
+      "previous": "84c2dbdaa15873b7c1231071de01667ab596fc64090ea32d613fae17eb7c5be6",
+      "seq": 690,
+      "tick": 260
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "fbe58f2f170e14d5ac3f89e0053cb033c75dc1c394b61ef2e3cfe9395bcb8853",
+      "kind": "resource_use",
+      "previous": "ecf9f7806a409d18e9b1cef80b928751a165dd9f96947434d985ccacb4f32c04",
+      "seq": 691,
+      "tick": 261
+    },
+    {
+      "actor": "B",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "0d1cc1bc10c4e9eae3c3222ed176db78890c509de7d89e472dc2b23205faf91a",
+      "kind": "resource_use",
+      "previous": "fbe58f2f170e14d5ac3f89e0053cb033c75dc1c394b61ef2e3cfe9395bcb8853",
+      "seq": 692,
+      "tick": 261
+    },
+    {
+      "actor": "C",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "93e06c5cadab96ec1bc369e704977479524c7172d3688931874dd0f69901ebcb",
+      "kind": "resource_use",
+      "previous": "0d1cc1bc10c4e9eae3c3222ed176db78890c509de7d89e472dc2b23205faf91a",
+      "seq": 693,
+      "tick": 261
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "77d7ee59a78ddaad361adef977e07e31a413d0935af9f0515e8c58663d669dab",
+      "kind": "resource_use",
+      "previous": "93e06c5cadab96ec1bc369e704977479524c7172d3688931874dd0f69901ebcb",
+      "seq": 694,
+      "tick": 262
+    },
+    {
+      "actor": "B",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "cef9529412ed02f3599b413ddd15af430286a6c600a9ef68b8d7ddf2f1acd346",
+      "kind": "resource_use",
+      "previous": "77d7ee59a78ddaad361adef977e07e31a413d0935af9f0515e8c58663d669dab",
+      "seq": 695,
+      "tick": 262
+    },
+    {
+      "actor": "C",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "84b28b33190d322cd1a0bb1ac299e82010de8f766cc5294491c1ab0bc041a9c3",
+      "kind": "resource_use",
+      "previous": "cef9529412ed02f3599b413ddd15af430286a6c600a9ef68b8d7ddf2f1acd346",
+      "seq": 696,
+      "tick": 262
+    },
+    {
+      "actor": "A",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "73ba44eda42a03ea4875aba605727d57b394ea87b39fe0a349d67df9bb6ce9f4",
+      "kind": "resource_use",
+      "previous": "84b28b33190d322cd1a0bb1ac299e82010de8f766cc5294491c1ab0bc041a9c3",
+      "seq": 697,
+      "tick": 263
+    },
+    {
+      "actor": "B",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "b877e5edec6768a8e163ae94d4b4e68e2d0933fa0787d8c189267dec0030eda8",
+      "kind": "resource_use",
+      "previous": "73ba44eda42a03ea4875aba605727d57b394ea87b39fe0a349d67df9bb6ce9f4",
+      "seq": 698,
+      "tick": 264
+    },
+    {
+      "actor": "C",
+      "classification": "VERIFIED_SIMULATION_RESULT",
+      "details": {
+        "fruit": 0.0,
+        "water": 0.18
+      },
+      "hash": "e30fcc449b571157d9ae815e4833a5b410b23a81c2e4c81b25ec6e7c64d7601a",
+      "kind": "resource_use",
+      "previous": "b877e5edec6768a8e163ae94d4b4e68e2d0933fa0787d8c189267dec0030eda8",
+      "seq": 699,
+      "tick": 264
     }
   ],
   "maximum_ticks": 20000,
   "plants": [
     {
-      "biomass": 6.790341916340639,
+      "biomass": 7.011863810412,
       "fruit": 5.0,
       "id": "P1",
       "status": "alive",
@@ -9946,23 +10310,23 @@
       "y": 2
     },
     {
-      "biomass": 7.038967907585624,
-      "fruit": 4.046180198159684,
+      "biomass": 7.303832360356157,
+      "fruit": 5.0,
       "id": "P2",
       "status": "alive",
       "x": 6,
       "y": 2
     },
     {
-      "biomass": 6.700561349774444,
-      "fruit": 3.9768595058355714,
+      "biomass": 6.965425802544977,
+      "fruit": 5.0,
       "id": "P3",
       "status": "alive",
       "x": 10,
       "y": 2
     },
     {
-      "biomass": 7.331670727077433,
+      "biomass": 7.553192621148794,
       "fruit": 5.0,
       "id": "P4",
       "status": "alive",
@@ -9970,23 +10334,23 @@
       "y": 2
     },
     {
-      "biomass": 7.214149176663764,
-      "fruit": 5.0,
+      "biomass": 7.4356710707351255,
+      "fruit": 4.216561921160633,
       "id": "P5",
       "status": "alive",
       "x": 2,
       "y": 6
     },
     {
-      "biomass": 7.059258599976707,
-      "fruit": 2.347265833243566,
+      "biomass": 7.3241230527472405,
+      "fruit": 3.6892457272809343,
       "id": "P6",
       "status": "alive",
       "x": 6,
       "y": 6
     },
     {
-      "biomass": 6.942217379175168,
+      "biomass": 7.163739273246529,
       "fruit": 5.0,
       "id": "P7",
       "status": "alive",
@@ -9994,7 +10358,7 @@
       "y": 6
     },
     {
-      "biomass": 6.873712522964034,
+      "biomass": 7.095234417035395,
       "fruit": 5.0,
       "id": "P8",
       "status": "alive",
@@ -10002,7 +10366,7 @@
       "y": 6
     },
     {
-      "biomass": 6.878812674235204,
+      "biomass": 7.100334568306565,
       "fruit": 5.0,
       "id": "P9",
       "status": "alive",
@@ -10010,7 +10374,7 @@
       "y": 10
     },
     {
-      "biomass": 6.770408042865566,
+      "biomass": 6.991929936936927,
       "fruit": 5.0,
       "id": "P10",
       "status": "alive",
@@ -10018,7 +10382,7 @@
       "y": 10
     },
     {
-      "biomass": 6.818251292297608,
+      "biomass": 7.039773186368969,
       "fruit": 5.0,
       "id": "P11",
       "status": "alive",
@@ -10026,7 +10390,7 @@
       "y": 10
     },
     {
-      "biomass": 6.713954007903057,
+      "biomass": 6.935475901974418,
       "fruit": 5.0,
       "id": "P12",
       "status": "alive",
@@ -10034,7 +10398,7 @@
       "y": 10
     },
     {
-      "biomass": 6.716148335445354,
+      "biomass": 6.937670229516715,
       "fruit": 5.0,
       "id": "P13",
       "status": "alive",
@@ -10042,7 +10406,7 @@
       "y": 14
     },
     {
-      "biomass": 6.89344546009179,
+      "biomass": 7.114967354163151,
       "fruit": 5.0,
       "id": "P14",
       "status": "alive",
@@ -10050,7 +10414,7 @@
       "y": 14
     },
     {
-      "biomass": 7.219663046046531,
+      "biomass": 7.441184940117892,
       "fruit": 5.0,
       "id": "P15",
       "status": "alive",
@@ -10058,7 +10422,7 @@
       "y": 14
     },
     {
-      "biomass": 7.125308114998566,
+      "biomass": 7.363306001224194,
       "fruit": 5.0,
       "id": "P16",
       "status": "alive",
@@ -10069,6 +10433,6 @@
   "policy": "observation_only",
   "schema": "relic-ecology/1",
   "seed": 19,
-  "tick": 252,
+  "tick": 264,
   "width": 16
 }
